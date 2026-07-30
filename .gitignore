@@ -1,0 +1,19 @@
+# Backup do site antigo (versão com imagens em base64 dentro do HTML)
+index.html.backup
+
+# Fontes/originais das imagens do hero — o site usa hero-novo.jpg
+Banido.png
+image-hero.PNG
+
+# Recortes de hero de versões anteriores do layout, não usados
+hero-foto.jpg
+hero-full.jpg
+hero-wide.jpg
+
+# Originais dos depoimentos — duplicatas exatas de depo1..depo6 (mesmo md5),
+# mantidas em disco só como cópia de segurança
+IMG_*.JPG
+IMG_*.PNG
+
+# Sistema
+.DS_Store
