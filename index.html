@@ -40,7 +40,7 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════
-   ORAÇÃO PROFÉTICA — Diana Mascarello
+   ORAÇÃO PROFÉTICA | Diana Mascarello
    Paleta derivada da arte do hero: creme/marfim, rosé e filigrana
    dourada. Tipografia: EB Garamond + Mulish.
    ═══════════════════════════════════════════════════════════ */
@@ -48,7 +48,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Cor — tirada da arte do hero: creme, rosé e dourado */
+  /* Cor: tirada da arte do hero (creme, rosé e dourado) */
   --rose-prof:      #3A2126;
   --rose-esc:       #4A2B31;
   --rose-medio:     #6B3D45;
@@ -60,15 +60,15 @@
   /* casa com a borda inferior da arte do hero (creme/marfim) */
   --hero-fundo:     #F1E6DA;
   --ouro:           #B8935A;
-  /* dourado para TEXTO sobre creme — o --ouro da so 2.5:1 e reprova AA */
+  /* dourado para TEXTO sobre creme: o --ouro da so 2.5:1 e reprova AA */
   --ouro-esc:       #7D5E2C;
-  /* vermelho dos precos riscados — 5.3:1 sobre o card creme */
+  /* vermelho dos precos riscados: 5.3:1 sobre o card creme */
   --preco-antigo:   #B03A44;
   --ouro-claro:     #D8B77E;
   --tinta:          #3D2B26;
   --tinta-suave:    #6E5A54;
 
-  /* Tipo — Garamond pela herança de manuscrito; Mulish pelo calor humanista */
+  /* Tipo: Garamond pela herança de manuscrito, Mulish pelo calor humanista */
   --display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
   --corpo:   'Mulish', system-ui, -apple-system, sans-serif;
 
@@ -86,7 +86,7 @@ html {
 /* Sem overflow-x aqui de propósito: hidden ou clip no html/body torna o
    elemento container de rolagem e a janela para de emitir eventos de scroll
    (a revelação no scroll depende deles). O estouro horizontal foi resolvido
-   na origem — ver overflow em #virada. */
+   na origem. Ver overflow em #virada. */
 
 body {
   font-family: var(--corpo);
@@ -123,7 +123,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ── Escala tipográfica ─────────────────────────────── */
 
-/* Garamond traz algarismos oldstyle por padrão — ilegíveis em preço.
+/* Garamond traz algarismos oldstyle por padrão, ilegíveis em preço.
    Numerais alinhados em todo o tipo de display. */
 .display,
 .versiculo, .trecho, .autor-stats .num,
@@ -144,7 +144,7 @@ h1.display { font-size: clamp(2.25rem, 6vw, 3.6rem); font-weight: 600; }
 h2.display { font-size: clamp(1.85rem, 4.6vw, 2.8rem); font-weight: 600; }
 h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-height: 1.3; }
 
-/* Eyebrow — sempre nomeia o tipo de conteúdo da seção */
+/* Eyebrow: sempre nomeia o tipo de conteúdo da seção */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -203,7 +203,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
 .tom-escuro .lead,
 .tom-medio .lead { color: rgba(247,241,234,0.87); }
 
-/* Textura de papel — quase imperceptível, tira o "plano digital" */
+/* Textura de papel: quase imperceptível, tira o "plano digital" */
 .tom-claro::before, .tom-alt::before {
   content: '';
   position: absolute; inset: 0;
@@ -214,7 +214,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
 }
 .tom-claro > .envelope, .tom-alt > .envelope { position: relative; }
 
-/* Ornamento divisor — regra fina com losango central */
+/* Ornamento divisor: regra fina com losango central */
 .ornamento {
   display: flex;
   align-items: center;
@@ -296,7 +296,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
   display: block;
 }
 
-/* No desktop a arte é vertical (9:16) — fica centralizada como um cartaz,
+/* No desktop a arte é vertical (9:16): fica centralizada como um cartaz,
    em vez de esticar ou ter as laterais cortadas (o texto chega perto das bordas).
    Sem sombra na imagem de propósito: ela criaria uma borda escura embaixo e
    quebraria a emenda invisível com o fundo. */
@@ -313,8 +313,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
 }
 
 /* Prova social e CTA saíram do hero por decisão do cliente: o bloco é só a
-   arte. O primeiro botão da página passa a ser a barra fixa, que aparece
-   assim que o hero sai da tela. */
+   arte. O único botão da página fica na seção de oferta. */
 
 /* ═══ DOR ════════════════════════════════════════════ */
 
@@ -353,7 +352,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
 
 @media (min-width: 48rem) {
   .dor-lista { grid-template-columns: 1fr 1fr; }
-  /* são 5 itens — o último ocupa a linha inteira em vez de deixar uma célula vazia */
+  /* são 5 itens, então o último ocupa a linha inteira em vez de deixar uma célula vazia */
   .dor-item:last-child { grid-column: 1 / -1; }
 }
 
@@ -361,7 +360,6 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
 
 /* overflow:hidden é necessário: o brilho decorativo abaixo é mais largo
    que a viewport no celular e criaria rolagem horizontal na página. */
-/* overflow:hidden por causa do brilho decorativo, mais largo que a viewport */
 #virada { overflow: hidden; }
 #virada::after {
   content: '';
@@ -452,7 +450,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
   padding: 0.7rem 0 0.25rem;
 }
 
-/* Ampliação do print — para ler a conversa inteira */
+/* Ampliação do print: para ler a conversa inteira */
 .lupa {
   position: fixed;
   inset: 0;
@@ -525,7 +523,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
   justify-content: center;
   gap: 0;
 }
-/* o ponto é pequeno, mas a área de toque tem 2.6rem — dedos não acertam 7px */
+/* o ponto é pequeno, mas a área de toque tem 2.6rem: dedos não acertam 7px */
 .pontos button {
   width: 2.6rem; height: 2.6rem;
   padding: 0;
@@ -592,7 +590,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
 
 #entregaveis h2 { color: var(--rose-esc); max-width: 28ch; }
 
-/* ELEMENTO ASSINATURA — a oração como carta iluminada */
+/* ELEMENTO ASSINATURA: a oração como carta iluminada */
 .carta {
   margin-top: clamp(2.4rem, 5vw, 3.4rem);
   background: var(--pergaminho);
@@ -759,7 +757,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
   padding: 1.3rem;
   text-align: left;
 }
-/* as capas de bônus são paisagem (1.83:1) — precisam de largura para respirar */
+/* as capas de bônus são paisagem (1.83:1): precisam de largura para respirar */
 @media (min-width: 30rem) { .bonus { grid-template-columns: 10.5rem 1fr; } }
 .bonus img {
   width: 100%;
@@ -794,14 +792,14 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
   margin: clamp(2.4rem, 5vw, 3.4rem) auto 0;
   max-width: 34rem;
   background: var(--pergaminho);
-  /* a caixa é clara dentro de uma seção escura — reseta a cor herdada */
+  /* a caixa é clara dentro de uma seção escura, então reseta a cor herdada */
   color: var(--tinta);
   border-radius: 18px;
   padding: clamp(1.6rem, 5vw, 2.6rem) clamp(1.3rem, 4.5vw, 2.4rem);
   box-shadow: 0 30px 70px -34px rgba(0,0,0,0.55);
 }
 
-/* Lista de valor: nome — preço riscado, como no modelo aprovado */
+/* Lista de valor: nome seguido do preço riscado, como no modelo aprovado */
 .valores {
   list-style: none;
   text-align: left;
@@ -855,7 +853,7 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
   text-wrap: balance;
 }
 
-/* O preço é o texto mais decisivo da página — peso e caixa alta para impacto */
+/* O preço é o texto mais decisivo da página: peso e caixa alta para impacto */
 .preco-parcela {
   margin-top: 0.7rem;
   font-family: var(--corpo);
@@ -966,8 +964,8 @@ footer .fino {
 /* ═══ REVELAÇÃO NO SCROLL ════════════════════════════ */
 
 /* Melhoria progressiva: o conteúdo só começa oculto quando há JS para
-   revelá-lo. Sem JS — ou se o script falhar — a página aparece inteira,
-   em vez de virar uma página de vendas em branco. */
+   revelá-lo. Se o JS não rodar, ou se o script falhar, a página aparece
+   inteira, em vez de virar uma página de vendas em branco. */
 .js .revela {
   opacity: 0;
   transform: translateY(22px);
@@ -1071,7 +1069,7 @@ footer .fino {
     <div class="dor-lista revela">
       <div class="dor-item">
         <svg class="icone" aria-hidden="true"><use href="#i-coracao-partido"></use></svg>
-        <p>Já fez tudo "certo" — orou, esperou, se dedicou — e ainda continua sozinha</p>
+        <p>Já fez tudo "certo": orou, esperou, se dedicou. E ainda continua sozinha</p>
       </div>
       <div class="dor-item">
         <svg class="icone" aria-hidden="true"><use href="#i-flor-caida"></use></svg>
@@ -1087,7 +1085,7 @@ footer .fino {
       </div>
       <div class="dor-item">
         <svg class="icone" aria-hidden="true"><use href="#i-cadeado"></use></svg>
-        <p>Ora, mas sente que suas palavras não chegam a lugar nenhum — como se houvesse um bloqueio espiritual</p>
+        <p>Ora, mas sente que suas palavras não chegam a lugar nenhum, como se houvesse um bloqueio espiritual</p>
       </div>
     </div>
   </div>
@@ -1170,14 +1168,14 @@ footer .fino {
         <div class="ben-selo"><svg class="icone" aria-hidden="true"><use href="#i-broto"></use></svg></div>
         <div>
           <h3 class="display">Cura de feridas e traumas</h3>
-          <p>Cada palavra é escolhida para tocar as dores específicas da sua história — não uma história genérica.</p>
+          <p>Cada palavra é escolhida para tocar as dores específicas da sua história, não uma história genérica.</p>
         </div>
       </div>
       <div class="ben revela">
         <div class="ben-selo"><svg class="icone" aria-hidden="true"><use href="#i-estrela"></use></svg></div>
         <div>
           <h3 class="display">Profecia do seu futuro marido</h3>
-          <p>O Espírito Santo declara e ativa a promessa que Deus já preparou — colocando fé onde havia dúvida.</p>
+          <p>O Espírito Santo declara e ativa a promessa que Deus já preparou, colocando fé onde havia dúvida.</p>
         </div>
       </div>
       <div class="ben revela">
@@ -1214,7 +1212,7 @@ footer .fino {
 
       <p class="trecho">
         Eu declaro que toda amarra que atrasou o teu tempo está desfeita agora. Que o teu
-        coração seja curado da memória que ainda dói — e que a promessa que Deus escreveu
+        coração seja curado da memória que ainda dói, e que a promessa que Deus escreveu
         para ti encontre, hoje, o caminho até você.
       </p>
       <p class="trecho-nota">Trecho ilustrativo &middot; a sua oração será escrita para a sua história</p>
@@ -1236,7 +1234,7 @@ footer .fino {
         <p>
           Aulas gravadas com um processo de cura emocional em 3 dias. Você vai tratar as
           feridas que relacionamentos passados deixaram e que ainda hoje impedem um novo
-          amor de chegar — para que seu coração esteja pronto para receber o que Deus já preparou.
+          amor de chegar, para que seu coração esteja pronto para receber o que Deus já preparou.
         </p>
       </article>
 
@@ -1259,10 +1257,10 @@ footer .fino {
 
     <div class="bonus-grid">
       <article class="bonus revela">
-        <img src="bonus-devocional.jpg" width="2000" height="1091" alt="Capa do Devocional 365 Dias — Priorize Deus." loading="lazy" decoding="async">
+        <img src="bonus-devocional.jpg" width="2000" height="1091" alt="Capa do Devocional 365 Dias: Priorize Deus." loading="lazy" decoding="async">
         <div>
           <span class="rot-bonus">Bônus</span>
-          <h4>Devocional 365 Dias — Priorize Deus</h4>
+          <h4>Devocional 365 Dias: Priorize Deus</h4>
           <p>
             Um material com leitura diária para cada dia do ano. Uma forma simples e consistente
             de fortalecer sua fé, aprofundar sua conexão com Deus e manter o espiritual em
@@ -1275,7 +1273,7 @@ footer .fino {
         <img src="bonus-resumo-biblico.jpg" width="2000" height="1090" alt="Capa do Resumo Bíblico de Gênesis ao Apocalipse." loading="lazy" decoding="async">
         <div>
           <span class="rot-bonus">Bônus</span>
-          <h4>Resumo Bíblico — De Gênesis ao Apocalipse</h4>
+          <h4>Resumo Bíblico: De Gênesis ao Apocalipse</h4>
           <p>
             Um resumo completo de cada livro da Bíblia, do início ao fim. Para você entender a
             Palavra com clareza, sem se perder, e aprofundar sua vida espiritual com base sólida.
@@ -1297,23 +1295,23 @@ footer .fino {
       <ul class="valores">
         <li>
           <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Oração Profética Personalizada &ndash; <span class="val">R$ 197,00</span></span>
+          <span>Oração Profética Personalizada - <span class="val">R$ 197,00</span></span>
         </li>
         <li>
           <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Curso Coração Curado &ndash; <span class="val">R$ 147,00</span></span>
+          <span>Curso Coração Curado - <span class="val">R$ 147,00</span></span>
         </li>
         <li>
           <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Curso Sem Amarras &ndash; <span class="val">R$ 127,00</span></span>
+          <span>Curso Sem Amarras - <span class="val">R$ 127,00</span></span>
         </li>
         <li>
           <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Devocional 365 Dias &ndash; <span class="val">R$ 87,00</span></span>
+          <span>Devocional 365 Dias - <span class="val">R$ 87,00</span></span>
         </li>
         <li>
           <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Resumo Bíblico Gênesis ao Apocalipse &ndash; <span class="val">R$ 29,90</span></span>
+          <span>Resumo Bíblico Gênesis ao Apocalipse - <span class="val">R$ 29,90</span></span>
         </li>
       </ul>
 
@@ -1356,7 +1354,7 @@ footer .fino {
         <p class="autor-bio revela">
           Sou terapeuta e descobri que minha missão é ajudar pessoas a atraírem bons
           relacionamentos através da reprogramação mental, limpeza emocional e conexão
-          espiritual. Acredito que cada pessoa merece viver um amor verdadeiro e divino —
+          espiritual. Acredito que cada pessoa merece viver um amor verdadeiro e divino,
           e tenho dedicado minha vida a ajudar mulheres a desbloquearem esse caminho.
         </p>
       </div>
