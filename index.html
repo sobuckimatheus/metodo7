@@ -23,42 +23,93 @@
   defer
 ></script>
 
-<!-- Dois pixels Utmify, por decisão do cliente.
+<!-- PIXEL UTMIFY: dois pixels Meta, um por campanha.
 
-     Comportamento verificado no navegador, não suposto:
+     Os dois não podem disparar juntos. Verificado no pixel.js:
+       . window.pixelId é uma global única, lida por getter a cada evento
+       . leadKey depende só da plataforma ("lead" para todo pixel Meta),
+         então dois trackers Meta gravam e leem o mesmo registro
+     Carregar os dois faz o segundo sobrescrever o primeiro e o mesmo ID
+     receber o evento duas vezes.
 
-     1. Os dois carregamentos inicializam. O console do pixel.js registra
-        "Tracker.inited?: false" duas vezes, porque cada execução do bundle
-        tem escopo próprio e a trava de init não é global.
-     2. O pixelId é um getter preguiçoso
-        (static get pixelId(){ return window.pixelId }): lê a global no
-        momento em que cada evento é montado, e não no carregamento.
+     Além disso, disparar os dois em todo visitante atribuiria cada conversão
+     às duas campanhas ao mesmo tempo, inflando o resultado das duas.
 
-     Consequência medida: window.pixelId fica valendo 6a754c16150862c8152fbae1
-     (o último atribuído), e os DOIS trackers leem esse mesmo valor. Ou seja,
-     o ID 6963154717a8f27f328d4beb não recebe evento nenhum, e o ID novo tende
-     a receber cada evento duas vezes.
+     Solução: cada visitante dispara o pixel da campanha que o trouxe. A
+     escolha fica guardada, para o visitante que volta sem UTM continuar na
+     mesma campanha. Se o pixel muda, o lead salvo pela Utmify é descartado,
+     senão ele carregaria o pixelId antigo.
 
-     O pixel.js só tem uma global por plataforma (pixelId para Meta, além de
-     googlePixelId, kwaiPixelId, tikTokPixelId e taboolaPixelId), então dois
-     pixels Meta na mesma página não é possível por HTML. Rodar os dois de
-     verdade precisa ser resolvido no painel da Utmify. -->
+     >>> PARA CONFIGURAR: preencha os valores de utm_campaign de cada
+         campanha do Meta no mapa abaixo. -->
 <script>
-  window.pixelId = "6963154717a8f27f328d4beb";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(a);
+(function () {
+  var MAPA = {
+    // 'valor-de-utm_campaign': 'pixelId'
+    'campanha-a': '6a754c16150862c8152fbae1',
+    'campanha-b': '6963154717a8f27f328d4beb'
+  };
+  var PADRAO = '6a754c16150862c8152fbae1';   // sem UTM reconhecida
+  var CHAVE  = 'utmify_pixel_escolhido';
+
+  function guardado(k, v) {
+    try {
+      if (v === undefined) return window.localStorage.getItem(k);
+      window.localStorage.setItem(k, v);
+    } catch (e) { return null; }
+  }
+
+  var campanha = '';
+  try {
+    campanha = (new URLSearchParams(window.location.search).get('utm_campaign') || '')
+                 .trim().toLowerCase();
+  } catch (e) {}
+
+  /* Casa exato primeiro; se não achar, aceita a chave contida no nome da
+     campanha. Nome de campanha no Meta costuma ganhar sufixo (-01, -cbo,
+     data), e exigir string exata quebraria a atribuição sem avisar. */
+  var doMapa = null;
+  if (campanha) {
+    doMapa = MAPA[campanha] || null;
+    if (!doMapa) {
+      for (var chave in MAPA) {
+        if (Object.prototype.hasOwnProperty.call(MAPA, chave) &&
+            campanha.indexOf(chave) !== -1) { doMapa = MAPA[chave]; break; }
+      }
+    }
+  }
+
+  var anterior = guardado(CHAVE);
+  var escolhido = doMapa || anterior || PADRAO;
+
+  /* Trocou de pixel: o registro que a Utmify guarda sob "lead" traz o
+     pixelId antigo embutido, então precisa sair. */
+  if (anterior && anterior !== escolhido) {
+    try { window.localStorage.removeItem('lead'); } catch (e) {}
+  }
+  guardado(CHAVE, escolhido);
+
+  window.pixelId = escolhido;
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.defer = true;
+  s.src = 'https://cdn.utmify.com.br/scripts/pixel/pixel.js';
+  document.head.appendChild(s);
+})();
 </script>
 
+<!-- PIXEL GOOGLE (Utmify). Convive com o pixel Meta acima sem disputa:
+     script próprio (pixel-google.js), global própria (googlePixelId) e
+     chave de armazenamento própria ("lead-google"). Por isso este entra
+     direto, sem a seleção por campanha que o Meta precisou. -->
 <script>
-  window.pixelId = "6a754c16150862c8152fbae1";
-  var b = document.createElement("script");
-  b.setAttribute("async", "");
-  b.setAttribute("defer", "");
-  b.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(b);
+  window.googlePixelId = "698a4dc3eee3584585e3abc7";
+  var g = document.createElement("script");
+  g.async = true;
+  g.defer = true;
+  g.src = "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js";
+  document.head.appendChild(g);
 </script>
 
 <script>document.documentElement.classList.add('js');</script>
