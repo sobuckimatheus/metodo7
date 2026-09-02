@@ -15,102 +15,23 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233A2126'/%3E%3Cpath d='M16 24s-7-4.4-7-9.2A3.9 3.9 0 0 1 16 12a3.9 3.9 0 0 1 7 2.8C23 19.6 16 24 16 24z' fill='none' stroke='%23B8935A' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E">
 
-<script
-  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-  data-utmify-prevent-xcod-sck
-  data-utmify-prevent-subids
-  async
-  defer
-></script>
-
-<!-- PIXEL UTMIFY: dois pixels Meta, um por campanha.
-
-     Os dois não podem disparar juntos. Verificado no pixel.js:
-       . window.pixelId é uma global única, lida por getter a cada evento
-       . leadKey depende só da plataforma ("lead" para todo pixel Meta),
-         então dois trackers Meta gravam e leem o mesmo registro
-     Carregar os dois faz o segundo sobrescrever o primeiro e o mesmo ID
-     receber o evento duas vezes.
-
-     Além disso, disparar os dois em todo visitante atribuiria cada conversão
-     às duas campanhas ao mesmo tempo, inflando o resultado das duas.
-
-     Solução: cada visitante dispara o pixel da campanha que o trouxe. A
-     escolha fica guardada, para o visitante que volta sem UTM continuar na
-     mesma campanha. Se o pixel muda, o lead salvo pela Utmify é descartado,
-     senão ele carregaria o pixelId antigo.
-
-     >>> PARA CONFIGURAR: preencha os valores de utm_campaign de cada
-         campanha do Meta no mapa abaixo. -->
+<!-- Meta Pixel Code -->
 <script>
-(function () {
-  var MAPA = {
-    // 'valor-de-utm_campaign': 'pixelId'
-    'campanha-a': '6a754c16150862c8152fbae1',
-    'campanha-b': '6963154717a8f27f328d4beb'
-  };
-  var PADRAO = '6a754c16150862c8152fbae1';   // sem UTM reconhecida
-  var CHAVE  = 'utmify_pixel_escolhido';
-
-  function guardado(k, v) {
-    try {
-      if (v === undefined) return window.localStorage.getItem(k);
-      window.localStorage.setItem(k, v);
-    } catch (e) { return null; }
-  }
-
-  var campanha = '';
-  try {
-    campanha = (new URLSearchParams(window.location.search).get('utm_campaign') || '')
-                 .trim().toLowerCase();
-  } catch (e) {}
-
-  /* Casa exato primeiro; se não achar, aceita a chave contida no nome da
-     campanha. Nome de campanha no Meta costuma ganhar sufixo (-01, -cbo,
-     data), e exigir string exata quebraria a atribuição sem avisar. */
-  var doMapa = null;
-  if (campanha) {
-    doMapa = MAPA[campanha] || null;
-    if (!doMapa) {
-      for (var chave in MAPA) {
-        if (Object.prototype.hasOwnProperty.call(MAPA, chave) &&
-            campanha.indexOf(chave) !== -1) { doMapa = MAPA[chave]; break; }
-      }
-    }
-  }
-
-  var anterior = guardado(CHAVE);
-  var escolhido = doMapa || anterior || PADRAO;
-
-  /* Trocou de pixel: o registro que a Utmify guarda sob "lead" traz o
-     pixelId antigo embutido, então precisa sair. */
-  if (anterior && anterior !== escolhido) {
-    try { window.localStorage.removeItem('lead'); } catch (e) {}
-  }
-  guardado(CHAVE, escolhido);
-
-  window.pixelId = escolhido;
-
-  var s = document.createElement('script');
-  s.async = true;
-  s.defer = true;
-  s.src = 'https://cdn.utmify.com.br/scripts/pixel/pixel.js';
-  document.head.appendChild(s);
-})();
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1626474645717460');
+fbq('track', 'PageView');
 </script>
-
-<!-- PIXEL GOOGLE (Utmify). Convive com o pixel Meta acima sem disputa:
-     script próprio (pixel-google.js), global própria (googlePixelId) e
-     chave de armazenamento própria ("lead-google"). Por isso este entra
-     direto, sem a seleção por campanha que o Meta precisou. -->
-<script>
-  window.googlePixelId = "698a4dc3eee3584585e3abc7";
-  var g = document.createElement("script");
-  g.async = true;
-  g.defer = true;
-  g.src = "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js";
-  document.head.appendChild(g);
-</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1626474645717460&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
 <script>document.documentElement.classList.add('js');</script>
 
