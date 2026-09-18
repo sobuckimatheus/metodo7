@@ -776,6 +776,17 @@ h3.display { font-size: clamp(1.28rem, 2.5vw, 1.55rem); font-weight: 600; line-h
 
 #oferta h2 { color: var(--pergaminho); max-width: 24ch; }
 
+.oferta-card {
+  margin: clamp(2.4rem, 5vw, 3.4rem) auto 0;
+  max-width: 42rem;
+  text-align: center;
+}
+
+.oferta-card picture {
+  display: block;
+  margin: 0 auto;
+}
+
 .oferta-caixa {
   margin: clamp(2.4rem, 5vw, 3.4rem) auto 0;
   max-width: 34rem;
@@ -1260,43 +1271,17 @@ footer .fino {
   <div class="envelope">
     <h2 class="display revela">Tudo o que você vai receber na Oração Profética</h2>
 
-    <div class="oferta-caixa revela">
-      <ul class="valores">
-        <li>
-          <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Oração Profética Personalizada - <span class="val">R$ 197,00</span></span>
-        </li>
-        <li>
-          <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Curso Coração Curado - <span class="val">R$ 147,00</span></span>
-        </li>
-        <li>
-          <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Curso Sem Amarras - <span class="val">R$ 127,00</span></span>
-        </li>
-        <li>
-          <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Devocional 365 Dias - <span class="val">R$ 87,00</span></span>
-        </li>
-        <li>
-          <svg class="icone" aria-hidden="true"><use href="#i-check"></use></svg>
-          <span>Resumo Bíblico Gênesis ao Apocalipse - <span class="val">R$ 29,90</span></span>
-        </li>
-      </ul>
+    <div class="oferta-card revela">
+      <picture>
+        <source srcset="oferta.webp" type="image/webp">
+        <img src="oferta.PNG" alt="Oferta Oração Profética" loading="lazy" decoding="async" style="max-width: 100%; height: auto; border-radius: 12px;">
+      </picture>
 
-      <p class="total-riscado">Tudo isso deveria custar: R$ 587,90</p>
-
-      <p class="preco-rot">
-        Mas hoje você tem acesso a Oração Profética para atrair o seu futuro marido, por apenas:
-      </p>
-      <p class="preco-parcela">8x de R$ 5,27</p>
-      <p class="preco-avista">ou R$ 37,00 à vista</p>
-
-      <a href="https://pay.onprofit.com.br/z0BkNbTw?off=VbgYFL" class="cta" target="_blank" rel="noopener">
+      <a href="https://pay.onprofit.com.br/z0BkNbTw?off=VbgYFL" class="cta" target="_blank" rel="noopener" style="margin-top: 2rem;">
         Sim, eu quero a minha Oração
       </a>
 
-      <p class="pagamentos">VISA &bull; Mastercard &bull; Elo &bull; PIX</p>
+      <p class="pagamentos" style="margin-top: 1.2rem;">VISA &bull; Mastercard &bull; Elo &bull; PIX</p>
     </div>
   </div>
 </section>
